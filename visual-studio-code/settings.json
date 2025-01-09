@@ -1,14 +1,15 @@
 {
-    "workbench.colorTheme": "zh'st",
+
+    "workbench.colorTheme": "Vitesse Dark",
     "workbench.productIconTheme": "fluent-icons",
     "workbench.iconTheme": "symbols",
     "workbench.sideBar.location": "right",
     "window.commandCenter": false,
     "workbench.editor.labelFormat": "short",
-    "workbench.statusBar.visible": false,
-    "workbench.editor.enablePreview": false,
+    "workbench.statusBar.visible": true,
+    "workbench.editor.enablePreview": true,
     "workbench.editor.splitInGroupLayout": "vertical",
-    "workbench.layoutControl.enabled": false,
+    "workbench.layoutControl.enabled": true,
     "editor.fontFamily": "'Jetbrains Mono', monospace",
     "editor.semanticHighlighting.enabled": false,
     "editor.cursorBlinking": "solid",
@@ -19,13 +20,13 @@
     "editor.cursorStyle": "line-thin",
     "editor.lineHeight": 1.5,
     "editor.minimap.enabled": false,
-    "editor.guides.indentation": true,
+    "editor.guides.indentation": false,
     "editor.renderWhitespace": "selection",
-    "editor.guides.bracketPairs": false,
+    "editor.guides.bracketPairs": true,
     "editor.guides.highlightActiveIndentation": true,
     "explorer.fileNesting.enabled": true,
-    "symbols.hidesExplorerArrows": false,
-    "breadcrumbs.enabled": false,
+    "symbols.hidesExplorerArrows": true,
+    "breadcrumbs.enabled": true,
     // https://marketplace.visualstudio.com/items?itemName=shalldie.background
     "background.enabled": true,
     // "background.fullscreen": {
@@ -38,25 +39,25 @@
     //   "interval": 0
     // },
     // https://marketplace.visualstudio.com/items?itemName=drcika.apc-extension
-    "apc.font.family": "'Lilex ExtraThick'",
-    "apc.header": {
-        "height": 29
-    },
-    "apc.listRow": {
-        "height": 25
-    },
-    "window.titleBarStyle": "native",
-    "apc.electron": {
-       "titleBarStyle": "hidden",
-       "frame": false
-    },
-    "apc.stylesheet": {
-        // "html": "border: 1px solid #202023;",
-        ".monaco-grid-branch-node": "top: 0 !important",
-        ".editor-actions": "display: none !important",
-        ".monaco-editor .suggest-widget": "border-radius: 6px; border: 1px solid rgba(255,255,255,0.04); opacity: 0.97; backdrop-filter: blur(15px);",
-        "body > div.file-icons-enabled.enable-motion.monaco-workbench.windows.chromium.nopanel.noauxiliarybar.no-activity-bar.sidebar-right.vs-dark.mvllow-rose-pine-themes-rose-pine-color-theme-json > div.monaco-grid-view > div > div > div.monaco-scrollable-element > div.split-view-container > div:nth-child(3) > div > div > div.monaco-scrollable-element > div.split-view-container > div.split-view-view.visible > div > div > div.monaco-scrollable-element > div.split-view-container > div.split-view-view.visible > div > div > div.sash-container > div:nth-child(2)": "border-left: 1px solid rgba(255,255,255,0.04)"
-    },
+    // "apc.font.family": "'Lilex ExtraThick'",
+    // "apc.header": {
+    //     "height": 29
+    // },
+    // "apc.listRow": {
+    //     "height": 25
+    // },
+    // "window.titleBarStyle": "native",
+    // "apc.electron": {
+    //    "titleBarStyle": "hidden",
+    //    "frame": false
+    // },
+    // "apc.stylesheet": {
+    //     // "html": "border: 1px solid #202023;",
+    //     ".monaco-grid-branch-node": "top: 0 !important",
+    //     ".editor-actions": "display: none !important",
+    //     ".monaco-editor .suggest-widget": "border-radius: 6px; border: 1px solid rgba(255,255,255,0.04); opacity: 0.97; backdrop-filter: blur(15px);",
+    //     "body > div.file-icons-enabled.enable-motion.monaco-workbench.windows.chromium.nopanel.noauxiliarybar.no-activity-bar.sidebar-right.vs-dark.mvllow-rose-pine-themes-rose-pine-color-theme-json > div.monaco-grid-view > div > div > div.monaco-scrollable-element > div.split-view-container > div:nth-child(3) > div > div > div.monaco-scrollable-element > div.split-view-container > div.split-view-view.visible > div > div > div.monaco-scrollable-element > div.split-view-container > div.split-view-view.visible > div > div > div.sash-container > div:nth-child(2)": "border-left: 1px solid rgba(255,255,255,0.04)"
+    // },
     "glassit.alpha": 220,
     "editor.codeLensFontFamily": "'Lilex ExtraThick'",
     "editor.inlayHints.fontFamily": "'Lilex ExtraThick'",
