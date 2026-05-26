@@ -1,5 +1,5 @@
 [window]
-opacity = 0.80
+opacity = 0.88
 blur = true
 decorations = "None"
 
@@ -12,25 +12,28 @@ family = "Lilex"
 style = "ExtraThick"
 
 [colors.primary]
-background = "#1a1a1d"
-foreground = "#e6e2f0"
+background = "#101010"
+foreground = "#e8e3dc"
 
 [colors.normal]
-cyan = "#10ccd5"
-green = "#22cd8b"
-magenta = "#a34bb0"
-red = "#e03c3c"
-white = "#cbcbcb"
-yellow = "#eec051"
-black = "#3b3b3b"
-blue = "#668be2"
+black = "#2a2a2a"
+red = "#d78787"
+green = "#a6d189"
+yellow = "#e5c890"
+blue = "#b7a0f7"
+magenta = "#c6a0f6"
+cyan = "#91d7e3"
+white = "#d8d3cd"
 
 [colors.bright]
-black = "#66676f"
-blue = "#81a6fd"
-cyan = "#4deaea"
-green = "#3fe6a3"
-magenta = "#afafff"
-red = "#f08359"
+black = "#5c5c5c"
+red = "#ef9f9f"
+green = "#b8e1a1"
+yellow = "#f0d99c"
+blue = "#c9b8ff"
+magenta = "#d6b4ff"
+cyan = "#a6e3e9"
 white = "#ffffff"
-yellow = "#fbfb7b"
+
+[font]
+size = 14.0
