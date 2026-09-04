@@ -19,5 +19,27 @@
     };
   };  
 
+  dconf = {
+  enable = true;
+
+  settings = {
+    "org/gnome/desktop/wm/keybindings" = {
+      switch-to-workspace-left = [ "<Control><Super>Left" ];
+      switch-to-workspace-right = [ "<Control><Super>Right" ];
+
+      move-to-workspace-left = [ "<Control><Super><Shift>Left" ];
+      move-to-workspace-right = [ "<Control><Super><Shift>Right" ];
+
+      move-to-monitor-left = [ "<Super><Shift>Left" ];
+      move-to-monitor-right = [ "<Super><Shift>Right" ];
+    };
+
+    "org/gnome/mutter/keybindings" = {
+      toggle-tiled-left = [ ];
+      toggle-tiled-right = [ ];
+    };
+  };
+};
+
 }
 
