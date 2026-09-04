@@ -6,6 +6,12 @@
 
   home.stateVersion = "26.05";
 
+  home.file.".config/alacritty/alacritty.toml".source =
+    ./themes/alacritty.toml;
+
+  home.file.".config/fish/config.fish".source =
+    ./themes/config.fish;
+
   home.packages = with pkgs; [
     vesktop
   ];
@@ -35,8 +41,8 @@
     };
 
     "org/gnome/mutter/keybindings" = {
-      toggle-tiled-left = [ ];
-      toggle-tiled-right = [ ];
+      toggle-tiled-left = [ "<Super>Left" ];
+      toggle-tiled-right = [ "<Super>Right" ];
     };
   };
 };
