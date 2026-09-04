@@ -1,0 +1,39 @@
+[window]
+opacity = 0.88
+blur = true
+decorations = "None"
+
+[window.padding]
+x = 10
+y = 10
+
+[font.normal]
+family = "Lilex"
+style = "ExtraThick"
+
+[colors.primary]
+background = "#101010"
+foreground = "#e8e3dc"
+
+[colors.normal]
+black = "#2a2a2a"
+red = "#d78787"
+green = "#a6d189"
+yellow = "#e5c890"
+blue = "#b7a0f7"
+magenta = "#c6a0f6"
+cyan = "#91d7e3"
+white = "#d8d3cd"
+
+[colors.bright]
+black = "#5c5c5c"
+red = "#ef9f9f"
+green = "#b8e1a1"
+yellow = "#f0d99c"
+blue = "#c9b8ff"
+magenta = "#d6b4ff"
+cyan = "#a6e3e9"
+white = "#ffffff"
+
+[font]
+size = 14.0
