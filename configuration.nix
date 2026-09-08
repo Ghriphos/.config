@@ -22,6 +22,7 @@
     git
     alacritty
     home-manager
+    libreoffice
   ];
 
   programs.fish.enable = true;
@@ -133,6 +134,7 @@
     packages = with pkgs; [
     #  thunderbird
     ];
+    shell = pkgs.fish;
   };
 
   # Install firefox.
