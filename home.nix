@@ -1,6 +1,7 @@
 { config, pkgs, ... }:
 
 {
+  # User Settings
   home.username = "ghriphos";
   home.homeDirectory = "/home/ghriphos";
 
@@ -15,7 +16,8 @@
   home.packages = with pkgs; [
     vesktop
   ];
-
+  
+  # Git Home Configuration
   programs.git = {
     enable = true;
 
@@ -25,27 +27,35 @@
     };
   };  
 
+  # Keybindings
   dconf = {
-  enable = true;
+    enable = true;
 
-  settings = {
-    "org/gnome/desktop/wm/keybindings" = {
-      switch-to-workspace-left = [ "<Control><Super>Left" ];
-      switch-to-workspace-right = [ "<Control><Super>Right" ];
+    settings = {
+      "org/gnome/desktop/wm/keybindings" = {
+        switch-to-workspace-left = [ "<Control><Super>Left" ];
+        switch-to-workspace-right = [ "<Control><Super>Right" ];
 
-      move-to-workspace-left = [ "<Control><Super><Shift>Left" ];
-      move-to-workspace-right = [ "<Control><Super><Shift>Right" ];
+        move-to-workspace-left = [ "<Control><Super><Shift>Left" ];
+        move-to-workspace-right = [ "<Control><Super><Shift>Right" ];
 
-      move-to-monitor-left = [ "<Super><Shift>Left" ];
-      move-to-monitor-right = [ "<Super><Shift>Right" ];
-    };
+        move-to-monitor-left = [ "<Super><Shift>Left" ];
+        move-to-monitor-right = [ "<Super><Shift>Right" ];
+      };
 
-    "org/gnome/mutter/keybindings" = {
-      toggle-tiled-left = [ "<Super>Left" ];
-      toggle-tiled-right = [ "<Super>Right" ];
+      "org/gnome/mutter/keybindings" = {
+        toggle-tiled-left = [ "<Super>Left" ];
+        toggle-tiled-right = [ "<Super>Right" ];
+      };
     };
   };
-};
 
+  # Hyprland 
+  wayland.windowManager.hyprland.systemd.enable = false;
+ 
+  xdg.configFile."hypr" = {
+    source = ./dotfiles/hypr;
+    recursive = true;
+  };
 }
 

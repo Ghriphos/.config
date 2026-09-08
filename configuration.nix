@@ -5,6 +5,24 @@
 { config, pkgs, ... }:
 
 {
+  # Hyprland Configuration
+  programs.hyprland = {
+    enable = true;
+    withUWSM = true;
+    xwayland.enable = true;
+  };
+
+  hardware.bluetooth.enable = true;
+
+  services.power-profiles-daemon.enable = true;
+  services.upower.enable = true;
+
+  # Noctalia Configuration
+  programs.noctalia = {
+    enable = true;
+    recommendedServices.enable = true;
+  };
+
   # nvidia configuration
   hardware.graphics.enable = true;
 
@@ -23,6 +41,13 @@
     alacritty
     home-manager
     libreoffice
+    
+    grim
+    slurp
+    wl-clipboard
+    
+    brightnessctl
+    playerctl
   ];
 
   programs.fish.enable = true;
@@ -30,6 +55,9 @@
   services.tailscale.enable = true;
 
   virtualisation.docker.enable = true;
+
+  # Flatpak
+  services.flatpak.enable = true;
 
   services.logind.settings.Login = {
     HandleLidSwitch = "ignore";
@@ -40,7 +68,6 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      <home-manager/nixos>
     ];
 
   # Home Manager Configuration
