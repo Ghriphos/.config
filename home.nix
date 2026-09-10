@@ -17,7 +17,7 @@
     vesktop
   ];
 
-  xdg.configFile."noctalia".source = ./dotfiles/noctalia;
+  xdg.configFile."noctalia".source = config.lib.file.mkOutOfStoreSymlink "/etc/nixos/dotfiles/noctalia";
   
   # Git Home Configuration
   programs.git = {
