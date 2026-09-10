@@ -1,0 +1,23 @@
+[wallpaper]
+enabled = true
+
+directory = "/home/ghriphos/wallpapers"
+
+fill_mode = "crop"
+
+transition = [
+  "fade",
+  "wipe",
+  "disc",
+  "zoom"
+]
+
+transition_duration = 500
+edge_smoothness = 0.35
+
+transition_on_startup = true
+
+[wallpaper.automation]
+enabled = false
+recursive = true
+order = "random"

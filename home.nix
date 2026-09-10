@@ -15,10 +15,22 @@
 
   home.packages = with pkgs; [
     vesktop
+    bibata-cursors
   ];
 
   xdg.configFile."noctalia".source = config.lib.file.mkOutOfStoreSymlink "/etc/nixos/dotfiles/noctalia";
-  
+
+  home.pointerCursor = {
+    gtk.enable = true;
+    x11.enable = true;
+
+    package = pkgs.bibata-cursors;
+    name = "Bibata-Modern-Classic";
+    size = 24;
+
+    hyprcursor.enable = true;
+  };
+
   # Git Home Configuration
   programs.git = {
     enable = true;
@@ -58,6 +70,12 @@
   xdg.configFile."hypr" = {
     source = ./dotfiles/hypr;
     recursive = true;
+  };
+
+  # nvim
+  programs.neovim = {
+    enable = true;
+    defaultEditor = true;
   };
 }
 
