@@ -49,6 +49,8 @@
     
     brightnessctl
     playerctl
+
+    fastfetch
   ];
 
   programs.fish.enable = true;
@@ -71,6 +73,10 @@
       ./hardware-configuration.nix
     ];
 
+  # Boot Loader
+  boot.loader.efi.canTouchEfiVariables = true;  
+  boot.loader.systemd-boot.enable = true;
+
   # Home Manager Configuration
 
   home-manager.useGlobalPkgs = true;
@@ -90,11 +96,7 @@
     "nix-command"
     "flakes"
   ];
-
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
+  
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
