@@ -44,6 +44,7 @@
     
     grim
     slurp
+    satty
     wl-clipboard
     
     brightnessctl

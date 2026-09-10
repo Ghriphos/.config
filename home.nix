@@ -16,6 +16,8 @@
   home.packages = with pkgs; [
     vesktop
   ];
+
+  xdg.configFile."noctalia".source = ./dotfiles/noctalia;
   
   # Git Home Configuration
   programs.git = {
