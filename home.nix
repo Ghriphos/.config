@@ -16,6 +16,8 @@
   home.packages = with pkgs; [
     vesktop
     bibata-cursors
+    osu-lazer
+    vlc
   ];
 
   xdg.configFile."noctalia".source = config.lib.file.mkOutOfStoreSymlink "/etc/nixos/dotfiles/noctalia";
@@ -65,12 +67,16 @@
   };
 
   # Hyprland 
-  wayland.windowManager.hyprland.systemd.enable = false;
- 
-  xdg.configFile."hypr" = {
-    source = ./dotfiles/hypr;
-    recursive = true;
+  wayland.windowManager.hyprland = {
+    enable = true;
+    package = null;
+    portalPackage = null;
+    configType = "hyprlang";
+    settings = {
+      source = "/etc/nixos/dotfiles/hypr/hyprland.conf";
+    };
   };
+  
 
   # nvim
   programs.neovim = {
