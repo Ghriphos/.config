@@ -47,6 +47,9 @@
 
     beekeeper-studio
 
+    fzf
+    nix-search-tv
+
     gcc
     ripgrep
     fd
