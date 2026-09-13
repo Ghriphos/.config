@@ -7,8 +7,26 @@
 
   home.stateVersion = "26.05";
 
-  home.file.".config/alacritty/alacritty.toml".source =
-    ./themes/alacritty.toml;
+  # Alacritty
+  programs.alacritty = {
+    enable = true;
+
+    settings = {
+      general.import = [
+        "~/.config/alacritty/themes/noctalia.toml"
+      ];
+
+      window = {
+	opacity = 0.88;
+	blur = true;
+      };
+
+      window.padding = {
+	x = 10;
+	y = 10;
+      };
+    };
+  };
 
   home.file.".config/fish/config.fish".source =
     ./themes/config.fish;
