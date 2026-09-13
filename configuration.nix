@@ -2,7 +2,7 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   # Hyprland Configuration
@@ -63,6 +63,7 @@
     playerctl
 
     fastfetch
+    htop
   ];
 
   programs.fish.enable = true;
@@ -95,11 +96,21 @@
   };
 
   # Home Manager Configuration
+  home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = true;
 
-  home-manager.useGlobalPkgs = true;
-  home-manager.useUserPackages = true;
+    extraSpecialArgs = {
+      inherit inputs;
+    };
 
-  home-manager.users.ghriphos = import ./home.nix;
+    users.ghriphos = {
+      imports = [
+        ./home.nix
+        inputs.noctalia.homeModules.default
+      ];
+    };
+  };
 
   # Fonts
 

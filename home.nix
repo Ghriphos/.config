@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   # User Settings
@@ -18,9 +18,8 @@
     bibata-cursors
     osu-lazer
     vlc
+    vscode
   ];
-
-  xdg.configFile."noctalia".source = config.lib.file.mkOutOfStoreSymlink "/etc/nixos/dotfiles/noctalia";
 
   home.pointerCursor = {
     gtk.enable = true;
@@ -82,6 +81,28 @@
   programs.neovim = {
     enable = true;
     defaultEditor = true;
+  };
+
+  programs.noctalia = {
+    enable = true;
+
+    settings = {
+      theme = {
+        mode = "dark";
+        source = "builtin";
+        builtin = "Noctalia";
+
+        templates = {
+          enable_builtin_templates = true;
+
+          builtin_ids = [
+            "alacritty"
+            "starship"
+	    "fish"
+          ];
+        };
+      };
+    };
   };
 }
 

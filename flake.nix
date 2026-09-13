@@ -13,12 +13,18 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    noctalia.url = "github:noctalia-dev/noctalia/cachix";
-
+    noctalia = {
+      url = "github:noctalia-dev/noctalia/cachix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, noctalia, lanzaboote, ... }: {
+  outputs = inputs@{ self, nixpkgs, home-manager, noctalia, lanzaboote, ... }: {
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+      specialArgs = {
+        inherit inputs;
+      };
+
       system = "x86_64-linux";
 
       modules = [
@@ -26,6 +32,7 @@
         home-manager.nixosModules.home-manager
         noctalia.nixosModules.default
 	lanzaboote.nixosModules.lanzaboote
+
       ];
     };
   };
