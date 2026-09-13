@@ -18,7 +18,6 @@
     bibata-cursors
     osu-lazer
     vlc
-    vscode
   ];
 
   home.pointerCursor = {
@@ -87,10 +86,25 @@
     enable = true;
 
     settings = {
+      wallpaper = {
+	directory = "/home/ghriphos/wallpapers";
+
+	default = {
+	  path = "";
+	};
+
+	automation = {
+	  enabled = false;
+	  recursive = true;
+	};
+      };
+
       theme = {
         mode = "dark";
-        source = "builtin";
-        builtin = "Noctalia";
+	shell_mode = "follow";
+
+        source = "wallpaper";
+        wallpaper_scheme = "m3-content";
 
         templates = {
           enable_builtin_templates = true;

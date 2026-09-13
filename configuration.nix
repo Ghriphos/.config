@@ -46,6 +46,8 @@
     sbctl
 
     beekeeper-studio
+    vscode
+    codex
 
     fzf
     nix-search-tv
