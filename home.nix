@@ -31,13 +31,6 @@
   home.file.".config/fish/config.fish".source =
     ./themes/config.fish;
 
-  home.packages = with pkgs; [
-    vesktop
-    bibata-cursors
-    osu-lazer
-    vlc
-  ];
-
   home.pointerCursor = {
     gtk.enable = true;
     x11.enable = true;
@@ -92,7 +85,39 @@
       source = "/etc/nixos/dotfiles/hypr/hyprland.conf";
     };
   };
-  
+ 
+  # rclone
+  systemd.user.services.rclone-gdrive = {
+    Unit = {
+      Description = "Google Drive via rclone";
+      After = [ "network-online.target" ];
+      Wants = [ "network-online.target" ];
+    };
+
+    Service = {
+      Type = "notify";
+
+      ExecStart = ''
+        ${pkgs.rclone}/bin/rclone mount gdrive: %h/GoogleDrive \
+          --config=%h/.config/rclone/rclone.conf \
+          --vfs-cache-mode=full \
+          --dir-cache-time=24h \
+          --poll-interval=1m \
+          --umask=022
+      '';
+
+      ExecStop = ''
+        ${pkgs.fuse3}/bin/fusermount3 -u %h/GoogleDrive
+      '';
+
+      Restart = "on-failure";
+      RestartSec = "5s";
+    };
+
+    Install = {
+      WantedBy = [ "default.target" ];
+    };
+  };
 
   # nvim
   programs.neovim = {
@@ -136,5 +161,44 @@
       };
     };
   };
+
+  # monitors
+  home.packages = let
+    updateMonitors = pkgs.writeShellScriptBin "update-monitors" ''
+      LID_STATE_FILE="/proc/acpi/button/lid/LID/state"
+
+      HDMI_CONNECTED=false
+      if hyprctl monitors all | grep -q "^Monitor HDMI-A-1"; then
+        HDMI_CONNECTED=true
+      fi
+
+      LID_CLOSED=false
+      if [ -f "$LID_STATE_FILE" ]; then
+        if grep -qi "closed" "$LID_STATE_FILE"; then
+          LID_CLOSED=true
+        fi
+      fi
+
+      if $HDMI_CONNECTED; then
+        hyprctl keyword monitor "HDMI-A-1,2560x1080@199.00,0x0,1.0"
+
+        if $LID_CLOSED; then
+          hyprctl keyword monitor "eDP-1,disable"
+        else
+          hyprctl keyword monitor "eDP-1,1920x1080@144.00101,2560x0,1.0"
+        fi
+      else
+        hyprctl keyword monitor "eDP-1,1920x1080@144.00101,0x0,1.0"
+      fi
+    '';
+  in
+  with pkgs; [
+    vesktop
+    bibata-cursors
+    osu-lazer
+    vlc
+
+    updateMonitors
+  ];
 }
 

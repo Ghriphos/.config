@@ -43,6 +43,10 @@
     libreoffice
     qbittorrent
 
+    gnome-control-center
+    gvfs
+    rclone
+
     sbctl
 
     beekeeper-studio
@@ -73,6 +77,19 @@
   services.tailscale.enable = true;
 
   virtualisation.docker.enable = true;
+
+  # direnv
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+  };
+
+  # Online Accounts
+  programs.dconf.enable = true;
+
+  services.gvfs.enable = true;
+
+  services.gnome.gnome-keyring.enable = true;
 
   # Flatpak
   services.flatpak.enable = true;
