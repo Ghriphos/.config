@@ -1,0 +1,40 @@
+[notification]
+enable_daemon = true
+show_app_name = true
+show_actions = true
+
+position = "top_right"
+layer = "overlay"
+
+scale = 1.0
+background_opacity = 0.92
+border = true
+
+offset_x = 20
+offset_y = 14
+
+[osd]
+position = "top_center"
+orientation = "horizontal"
+position_vertical = "top_center"
+
+scale = 1.0
+border = true
+background_opacity = 0.82
+offset_x = 20
+offset_y = 14
+
+[osd.kinds]
+volume = true
+volume_output = true
+volume_input = true
+brightness = true
+wifi = true
+bluetooth = true
+power_profile = true
+caffeine = true
+nightlight = true
+dnd = true
+lock_keys = true
+keyboard_layout = true
+privacy = true

@@ -199,6 +199,9 @@
     vlc
 
     updateMonitors
+
+    opencode
+    flyctl
   ];
 }
 
