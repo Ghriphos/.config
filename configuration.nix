@@ -55,6 +55,7 @@
 
     fzf
     nix-search-tv
+    starship
 
     gcc
     ripgrep
@@ -70,6 +71,9 @@
 
     fastfetch
     htop
+    ngrok
+
+    obs-studio
   ];
 
   programs.fish.enable = true;
@@ -109,10 +113,15 @@
   boot.loader.efi.canTouchEfiVariables = true;  
   boot.loader.systemd-boot.enable = false;
 
+  boot.loader.systemd-boot.edk2-uefi-shell.enable = true;
+  boot.loader.systemd-boot.edk2-uefi-shell.sortKey = "z_edk2";
+
   boot.lanzaboote = {
     enable = true;
     pkiBundle = "/var/lib/sbctl";
   };
+
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
   # Home Manager Configuration
   home-manager = {

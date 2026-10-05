@@ -28,6 +28,12 @@
     };
   };
 
+  wayland.windowManager.hyprland.settings = {
+    windowrule = [
+      "opacity 0.90 0.85, match:class ^(code)$"
+    ];
+  };
+
   home.file.".config/fish/config.fish".source =
     ./themes/config.fish;
 
@@ -131,6 +137,7 @@
     settings = {
       wallpaper = {
 	directory = "/home/ghriphos/wallpapers";
+	shell.offline_mode = false;
 
 	default = {
 	  path = "";
@@ -140,6 +147,38 @@
 	  enabled = false;
 	  recursive = true;
 	};
+      };
+
+      plugins = {
+	enabled = [
+	  "noctalia/wallhaven"
+	];
+
+	auto_updated = "official";
+      };
+
+      bar.main.end = [
+        "media"
+      	"tray"
+      	"notifications"
+      	"clipboard"
+      	"network"
+      	"bluetooth"
+      	"volume"
+      	"brightness"
+      	"battery"
+
+      	# Botão do Wallhaven
+      	"wallhaven"
+
+      	"control-center"
+      	"session"
+      ];
+
+      widget.wallhaven = {
+	type = "noctalia/wallhaven:wallhaven";
+      	glyph = "photo";
+      	color = "secondary";
       };
 
       theme = {
@@ -165,31 +204,75 @@
   # monitors
   home.packages = let
     updateMonitors = pkgs.writeShellScriptBin "update-monitors" ''
-      LID_STATE_FILE="/proc/acpi/button/lid/LID/state"
+    #!/usr/bin/env bash
 
-      HDMI_CONNECTED=false
-      if hyprctl monitors all | grep -q "^Monitor HDMI-A-1"; then
-        HDMI_CONNECTED=true
+    LID_STATE_FILE="/proc/acpi/button/lid/LID/state"
+
+    HDMI_CONNECTED=false
+    MONITOR_DESCRIPTION=""
+
+    if hyprctl monitors all | grep -q "^Monitor HDMI-A-1"; then
+      HDMI_CONNECTED=true
+
+      MONITOR_DESCRIPTION="$(
+        hyprctl monitors all \
+          | awk '
+            /^Monitor HDMI-A-1/ {found=1}
+            found && /description:/ {
+              sub(/^[ \t]*description:[ \t]*/, "")
+              print
+              exit
+            }
+          '
+      )"
+    fi
+
+    LID_CLOSED=false
+
+    if [ -f "$LID_STATE_FILE" ]; then
+      if grep -qi "closed" "$LID_STATE_FILE"; then
+        LID_CLOSED=true
       fi
+    fi
 
-      LID_CLOSED=false
-      if [ -f "$LID_STATE_FILE" ]; then
-        if grep -qi "closed" "$LID_STATE_FILE"; then
-          LID_CLOSED=true
-        fi
-      fi
+    if $HDMI_CONNECTED; then
 
-      if $HDMI_CONNECTED; then
-        hyprctl keyword monitor "HDMI-A-1,2560x1080@199.00,0x0,1.0"
+      case "$MONITOR_DESCRIPTION" in
 
-        if $LID_CLOSED; then
-          hyprctl keyword monitor "eDP-1,disable"
-        else
-          hyprctl keyword monitor "eDP-1,1920x1080@144.00101,2560x0,1.0"
-        fi
+        "Beihai Century Joint Innovation Technology Co.Ltd SFVC-3415")
+          EXTERNAL_MODE="3440x1440@100"
+          EXTERNAL_WIDTH=3440
+          ;;
+
+        *)
+          # Monitor antigo / fallback
+          EXTERNAL_MODE="2560x1080@199"
+          EXTERNAL_WIDTH=2560
+          ;;
+
+      esac
+
+      hyprctl keyword monitor \
+        "HDMI-A-1,$EXTERNAL_MODE,0x0,1.0"
+
+      if $LID_CLOSED; then
+
+        hyprctl keyword monitor \
+          "eDP-1,disable"
+
       else
-        hyprctl keyword monitor "eDP-1,1920x1080@144.00101,0x0,1.0"
+
+        hyprctl keyword monitor \
+          "eDP-1,1920x1080@144.00101,''${EXTERNAL_WIDTH}x0,1.0"
+
       fi
+
+    else
+
+      hyprctl keyword monitor \
+        "eDP-1,1920x1080@144.00101,0x0,1.0"
+
+    fi
     '';
   in
   with pkgs; [
@@ -202,6 +285,8 @@
 
     opencode
     flyctl
+
+    bun
   ];
 }
 
