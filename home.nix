@@ -30,7 +30,8 @@
 
   wayland.windowManager.hyprland.settings = {
     windowrule = [
-      "opacity 0.90 0.85, match:class ^(code)$"
+      "opacity 0.88, match:class ^(code)$"
+      "opacity 0.88, match:class ^(beekeeper-studio)$"
     ];
   };
 

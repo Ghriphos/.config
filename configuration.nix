@@ -74,6 +74,7 @@
     ngrok
 
     obs-studio
+    anydesk
   ];
 
   programs.fish.enable = true;
